@@ -12,22 +12,11 @@ actions:
     parameters:
       - name: domain
         description: single domain name
+        multiline: true
         example: "google.com"
         required: true
         schema:
           type: string
-    returns:
-      schema:
-        type: string
-  - name: bulk_domain_to_ip
-    description: Digs multiple domains
-    parameters:
-      - name: domains
-        description: array of domain names
-        example: ["google.com","microsoft.com"]
-        required: true
-        schema:
-          type: array
     returns:
       schema:
         type: string
