@@ -27,7 +27,7 @@ class dig_domain_to_ip(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def single_domain_to_ip(domain_name):
+    async def single_domain_to_ip(self,domain_name):
         domain = domain_name
         dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
         for dig_record in dig_output_list:
