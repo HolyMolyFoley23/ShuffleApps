@@ -38,27 +38,5 @@ class dig_domain_to_ip(AppBase):
             except:
                 pass
 
-    async def bulk_domain_to_ip(domain_name_array):
-
-        # Filename of output
-        #date = time.strftime("%m-%d-%Y")
-        #output_filename = date + "_output_dig.txt"
-        dom_file = filename
-        records=[]
-        for domain in domain_name_array:
-                # Sleep in random intervals provided (currently set anywhere from 2-7 seconds) - in effort to try and not get blocked by bulk dig queries
-                sleep(randint(2,7))
-                # Use Dig Command
-                dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
-                for dig_record in dig_output_list:
-                    try:
-                        # Using 'ipaddress' library (https://docs.python.org/3/library/ipaddress.html), validate IP Address
-                        ipaddress.ip_address(dig_record)
-                        records.append(domain + " #~# " + dig_record + '\n')
-                    except:
-                        pass
-        domain_file.close()
-        return "".join(records)
-
 if __name__ == "__main__":
     asyncio.run(dig_domain_to_ip.run(), debug=True)
