@@ -31,7 +31,6 @@ class dig_domain_to_ip(AppBase):
 	dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
         for dig_record in dig_output_list:
             try:
-		return domain
                 # Using 'ipaddress' library (https://docs.python.org/3/library/ipaddress.html), validate IP Address
                 ipaddress.ip_address(dig_record)
                 return (str(domain) + " #~# " + dig_record)
