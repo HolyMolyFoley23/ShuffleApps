@@ -1,7 +1,7 @@
 import time
 import json
 import random
-import socket
+#import socket
 import asyncio
 import requests
 
@@ -15,7 +15,7 @@ from walkoff_app_sdk.app_base import AppBase
 
 class dig_domain_to_ip(AppBase):
     __version__ = "1.0.0"
-    app_name = "lastline"
+    app_name = "dig_domain_to_ip"
 
     def __init__(self, redis, logger, console_logger=None):
         """
