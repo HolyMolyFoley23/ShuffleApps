@@ -27,15 +27,18 @@ class dig_domain_to_ip(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    async def single_domain_to_ip(self,domain):
-	dig_output_list = subprocess.getoutput("dig +short " + domain).splitlines()
-        for dig_record in dig_output_list:
-            try:
-                # Using 'ipaddress' library (https://docs.python.org/3/library/ipaddress.html), validate IP Address
-                ipaddress.ip_address(dig_record)
-                return (str(domain) + " #~# " + dig_record)
-            except:
-                pass
+    async def domain_to_ip(self,domain_names):
+        domains = domain_names.splitlines()
+        output_dig=[]
+        for dom in domains:
+            dig_record=(pydig.query(dom.rstrip(), 'A'))
+            for dig in dig_record:
+                try:
+		    ip=ipaddress.ip_address(dig)
+                    output_dig.append(dom + " #~# " + str(ip))
+               except:
+                   pass
+    return "\n".join(output_dig)
 
 def run(request):
     action = request.get_json() 
