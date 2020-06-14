@@ -7,11 +7,11 @@ contact_info:
   url: https://github.com/bioniccyber
   email: "jfoley@bioniccyber.com"
 actions:
-  - name: single_domain_to_ip
+  - name: domain_to_ip
     description: Digs a single domain
     parameters:
-      - name: domain
-        description: single domain name
+      - name: domain_names
+        description: domain name
         multiline: true
         example: "google.com"
         required: true
