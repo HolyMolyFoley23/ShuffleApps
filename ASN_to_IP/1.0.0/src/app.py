@@ -48,7 +48,7 @@ class IP_to_ASN(AppBase):
         error_list=["Errors"]
         content="begin\nverbose\n"+ips+"\nend"
         # Place output into list
-        tc_output_list = netcat("whois.cymru.com", 43, content.encode()).splitlines()
+        tc_output_list = self.netcat("whois.cymru.com", 43, content.encode()).splitlines()
         # Skip first line of netcat output which is the following: 'Bulk mode; whois.cymru.com [2020-05-13 21:08:56 +0000]'
         for tc_record in tc_output_list[1:]:
             # Format of Output: ASN, IP, CIDR, CC, Registry, Allocated, AS Name
