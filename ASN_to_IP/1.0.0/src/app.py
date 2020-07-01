@@ -24,7 +24,7 @@ class IP_to_ASN(AppBase):
         super().__init__(redis, logger, console_logger)
 
 
-    def netcat(hostname, port, content):
+    def netcat(self,hostname, port, content):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((hostname, port))
         s.sendall(content)
@@ -39,7 +39,7 @@ class IP_to_ASN(AppBase):
         s.close()
         return ("".join(res))
 
-    async def IP_to_ASN(ips):
+    async def IP_to_ASN(self,ips):
         # Team Cymru IP to ASN Mapping through 'netcat' (bulk use - few thousand per bulk use to minimize overall load as noted by the team cymru doc page).
         # Set output filename to include date+time
 
