@@ -39,14 +39,14 @@ class IP_to_ASN(AppBase):
         s.close()
         return ("".join(res))
 
-    async def IP_to_ASN(ip_list):
+    async def IP_to_ASN(ips):
         # Team Cymru IP to ASN Mapping through 'netcat' (bulk use - few thousand per bulk use to minimize overall load as noted by the team cymru doc page).
         # Set output filename to include date+time
 
 
         valid_list=[]
         error_list=["Errors"]
-        content="begin\nverbose\n"+ip_list+"\nend"
+        content="begin\nverbose\n"+ips+"\nend"
         # Place output into list
         tc_output_list = netcat("whois.cymru.com", 43, content.encode()).splitlines()
         # Skip first line of netcat output which is the following: 'Bulk mode; whois.cymru.com [2020-05-13 21:08:56 +0000]'
