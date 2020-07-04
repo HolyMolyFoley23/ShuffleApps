@@ -16,6 +16,14 @@ actions:
         example: "93.184.216.34"
         schema:
           type: string
+    parameters:
+      - name: delimiter 
+        description: String that seperates the returned values
+        required: true
+        multiline: false
+        example: "~#~"
+        schema:
+          type: string
     returns:
       schema:
         type: string
